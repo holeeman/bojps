@@ -1,0 +1,21 @@
+#!/bin/bash
+
+PROGRAM=./bin/main
+
+make "$PROGRAM"
+if [ $# -gt 0 ]
+then
+echo $1;
+python3 tools/test.py <($PROGRAM < input/$1.in) output/$1.out;
+exit
+fi
+
+if [ -f "$PROGRAM" ]; then
+    for i in ./input/*;
+    do
+        tc=$(basename $i .in)
+        echo $tc;
+        python3 tools/test.py <($PROGRAM < $i) output/$tc.out;
+        echo;
+    done
+fi

@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -f input/*.in
+rm -f output/*.out
+python3 ./tools/conv.py

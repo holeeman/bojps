@@ -1,0 +1,20 @@
+#!/bin/bash
+
+PROGRAM=./bin/main
+
+make "$PROGRAM"
+if [ $# -gt 0 ]
+then
+$PROGRAM < input/$1.in
+exit
+fi
+
+if [ -f "$PROGRAM" ]; then
+    for i in ./input/*;
+    do
+        tc=$(basename $i .in)
+        echo $tc;
+        $PROGRAM < $i;
+        echo;
+    done
+fi
